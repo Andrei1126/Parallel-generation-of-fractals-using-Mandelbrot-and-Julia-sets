@@ -1,0 +1,23 @@
+Micut Andrei-Ion
+Grupa 331CB
+
+			Generare paralela de fractali folosind
+			multimile Mandelbrot si Julia
+				~Tema1~
+
+	Se citesc datele de intrare necesare pentru generarea celor doi fractali,
+si se aloca memorie pentru matricele de pixeli. Se initializeaza si o bariera,
+intrucat este necesara pentru a sincroniza thread-urile in momentul in care se
+incepe inversarea liniilor in matricea rezultat. Se creaza firele de executie
+care au ca rutina de start o functie "wrapper", unde se apeleaza cele doua
+functii pentru generarea fractalilor.
+
+	Se calculeaza indecsii de start si final, acestia determinand liniile
+din matrice pentru care un thread va genera valorile specifice fractalului.
+Se asteapta ca toate thread-urile sa termine de generat zona asociata din
+matricea de pixeli, prin intermediul barierei. Prin apelul functiei
+`flip_result_matrix()`, matricea este oglindita vertical, fiecare thread
+avand o zona specifica pe care opereaza.
+
+	Dupa finalizarea executiei fiecarui thread, se scriu in fisierele de
+iesire matricele rezultat, si se elibereaza memoria folosita de acestea.
